@@ -26,8 +26,11 @@ def runGold(func: Callable[[float, float], float], startPoint: List[float], eps1
     while(currentIteration < maxIter and diff > eps2):
         currentIteration = currentIteration + 1
         print(
-            f'Iteration: {currentIteration} \n Previous Point: {previousPoint} \n Current point: {currentPoint} \n Diff: {diff}')
-        print(dir)
+            f'Iteration: {currentIteration} \n Previous Point: {previousPoint} \
+                \n Current point: {currentPoint} \n Diff: {diff}')
+        x = getVectorLength(previousPoint,currentPoint)
+        y = getVectorLength()
+        dir = np.arctan()
         previousPoint = currentPoint
         currentPoint = findMinimum(func, [previousPoint[0] - range[0], previousPoint[0] + range[0]],
                                    [previousPoint[1] - range[0], previousPoint[1] + range[1]])
@@ -37,6 +40,8 @@ def runGold(func: Callable[[float, float], float], startPoint: List[float], eps1
         diff = abs(func(currentPoint[0], currentPoint[1]) -
                    func(previousPoint[0], previousPoint[1]))
 
+def getVectorLength(startPoint, endPoint):
+    return sqrt((endPoint[0]-startPoint[0])**2+(endPoint[1]-startPoint[1])**2)
 
 def findMinimum(func: Callable[[float, float], float], xRange: List[float], yRange: List[float], iter=1000):
     tolerance = 1e-3
