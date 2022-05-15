@@ -27,27 +27,26 @@ while True:  # Event Loop
         func = getFunction(values['-FUNC-'])
         if(figure):
             clear_canvas(figure)
-        try:
-            eps1= float(values['-EPs2-'])
-            eps2= float(values['-EPs3-'])
-            limit = int(values['-L-'])
-            startPoint = [float(x) for x in str(values['-PP-']).split(',')]
-            range = [float(x) for x in str(values['-ZONE-']).split(',')]
-
-            x = np.linspace(range[0], range[1])
-            y = np.linspace(range[0], range[1])
-            X, Y = np.meshgrid(x, y)
-            Z = func(X, Y)
-            Z = np.array(Z)
-            Z = np.reshape(Z, (len(x), len(y)))
-            plt.clf()
-            plt.contour(X, Y, Z)
-            runGold(func, startPoint, eps1, eps2, range, limit)
-            #plt.show()
-            figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
-        except Exception as e:
-            print('Exception :')
-            print(e)
+        # try:
+        eps1= float(values['-EPs2-'])
+        eps2= float(values['-EPs3-'])
+        limit = int(values['-L-'])
+        startPoint = [float(x) for x in str(values['-PP-']).split(',')]
+        range = [float(x) for x in str(values['-ZONE-']).split(',')]
+        x = np.linspace(-10, 10)
+        y = np.linspace(-10, 10)
+        X, Y = np.meshgrid(x, y)
+        Z = func(X, Y)
+        Z = np.array(Z)
+        Z = np.reshape(Z, (len(x), len(y)))
+        plt.clf()
+        plt.contour(X, Y, Z)
+        runGold(func, startPoint, eps1, eps2, range, limit)
+        plt.show()
+        #figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
+        # except Exception as e:
+        #     print('Exception :')
+        #     print(e)
     if event == 'Show':
         # Update the "output" text element to be the value of "input" element
         window['-OUTPUT-'].update(values['-IN-'])
