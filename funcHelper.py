@@ -23,7 +23,6 @@ def getFunction(funcString : str):
             raise Exception(f'{expr} is not allowed in function')
 
     funcString = re.sub(r"([\d]+)([a-zA-Z_])",r"\1*\2",funcString)
-    print(funcString)
     for toReplace, newValue in replace.items():
         funcString = funcString.replace(toReplace, newValue)
 

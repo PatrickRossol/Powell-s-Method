@@ -9,7 +9,7 @@ left_input_column = [
     [sg.Text('Eps1:', size=(4,1)), sg.Input(size=(10,1), key='-EPs2-',default_text="0.001")],
     [sg.Text('Eps2:', size=(4,1)), sg.Input(size=(10,1), key='-EPs3-',default_text="0.001")],
     [sg.Text('L:', size=(4,1)), sg.Input(size=(10,1), key='-L-', default_text="1000")],
-    [sg.Text('Przedział [a,b]:', size=(11,1)), sg.Input(size=(10,1), key='-ZONE-')],
+    [sg.Text('Przedział [a,b]:', size=(11,1)), sg.Input(size=(10,1), key='-ZONE-',default_text="-10,10")],
 ]
 
 frame_1 = [
@@ -18,7 +18,7 @@ frame_1 = [
 
 right_input_column = [
     [sg.Text("Metoda w kierunku")],
-    [sg.Combo(["Metoda złotego podziału", 'Metoda aproksymacji kwadratowej', 'test2'], default_value='Metoda złotego podziału',key='board')],
+    [sg.Combo(["Metoda złotego podziału", 'Metoda aproksymacji kwadratowej'], default_value='Metoda złotego podziału',key='board')],
 ]
 
 res_left_layout = [
@@ -48,9 +48,9 @@ frame_res = [
 input_data_layout = [
     [sg.Column(frame_1), sg.Column(right_input_column)],
     [sg.Text('Wprowadź funkcję')],
-    [sg.Input(size=(50,1), key='-FUNC-',default_text='-x^2-y^2')],
+    [sg.Input(size=(50,1), key='-FUNC-',default_text='(x-2)^2+(x-y^2)^2')],
     [sg.Text('Punkt początkowy')],
-    [sg.Input(size=(50,1), key='-PP-')],
+    [sg.Input(size=(50,1), key='-PP-', default_text="-4,-4")],
     [sg.Button('Wyczyść formularz', size = (10,2), button_color= 'gray'), sg.Button('Oblicz', size = (10,2), button_color= 'gray')],
     [sg.Column(frame_res)] 
 ]
