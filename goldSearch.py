@@ -15,6 +15,8 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
 
     points = np.zeros((dim+1, dim))
     startPoint = np.array(start)
+    plt.plot(startPoint[0], startPoint[1], marker='o',
+    markersize=8, markeredgecolor="red", markerfacecolor="red" )
     while(currentIteration < maxIter):
         currentIteration = currentIteration + 1
         # print(
@@ -37,11 +39,16 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
             #print(f'Line via {startPoint} {points[0]} {points[1]} {points[2]}')
             plt.plot([startPoint[0], points[0][0]], [
                      startPoint[1], points[0][1]], 'k-')
+            plt.plot(startPoint[0], startPoint[1], marker='o',
+                    markersize=3.5, markeredgecolor="red", markerfacecolor="red" )
             plt.plot([points[0][0], points[1][0]], [
                      points[0][1], points[1][1]], 'k-')
+            plt.plot(points[0][0], points[0][1], marker='o',
+                    markersize=3, markeredgecolor="gray", markerfacecolor="gray" )
             plt.plot([points[1][0], points[2][0]], [
                      points[1][1], points[2][1]], 'k-')
-
+            plt.plot(points[1][0], points[1][1], marker='o',
+                    markersize=3, markeredgecolor="gray", markerfacecolor="gray" )
         startPoint = np.copy(points[dim])
         diff = abs(func(*points[dim]) - func(*points[0]))
         # print(
