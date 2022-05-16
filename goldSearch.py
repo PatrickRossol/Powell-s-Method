@@ -2,7 +2,8 @@ from math import sqrt
 from typing import Callable, List
 import matplotlib.pyplot as plt
 import numpy as np
-ALPHA = (sqrt(5)+1)/2
+
+ALPHA = (sqrt(5)+1)/2   #Golden Ratio
 
 
 def minimizePowell(func: Callable[[float, float, float, float, float], float], start: List[float],
@@ -40,6 +41,7 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
                      points[0][1], points[1][1]], 'k-')
             plt.plot([points[1][0], points[2][0]], [
                      points[1][1], points[2][1]], 'k-')
+
         startPoint = np.copy(points[dim])
         diff = abs(func(*points[dim]) - func(*points[0]))
         # print(
@@ -47,8 +49,8 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
 
         if diff < eps2:
             return points[dim], func(*points[dim]), 'eps2', f'Value difference: {diff}'
-        elif vectorLength(points[0], points[2]) < eps1 or vectorLength(points[1], points[2]) < eps1:
-            return points[dim], func(*points[dim]), 'eps1', f'Jescze niewiem co tu'
+        elif all([vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]):
+            return points[dim], func(*points[dim]), 'eps1', f'Value {[vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]}'
     return points[dim], func(*points[dim]), 'Max Iteration', f'Iteration count: {currentIteration}'
 
 

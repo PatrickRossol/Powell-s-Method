@@ -1,8 +1,8 @@
 import PySimpleGUI as sg
 import numpy as np
-from gui import window
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from gui import window
 from funcHelper import getFunction
 from goldSearch import minimizePowell
 
@@ -42,16 +42,17 @@ while True:  # Event Loop
             if(len(startPoint) == 2):
                 xmin,xmax = plt.xlim()
                 ymin,ymax = plt.ylim()
-                x = np.linspace(xmin, xmax)
-                y = np.linspace(ymin, ymax)
+                x = np.linspace(xmin - 2, xmax + 2)
+                y = np.linspace(ymin - 2, ymax + 2)
                 X, Y = np.meshgrid(x, y)
                 Z = func(X, Y)
                 Z = np.array(Z)
                 Z = np.reshape(Z, (len(x), len(y)))
                 plt.contourf(X, Y, Z, extend='both', levels=50)
                 figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
-            window['textbox'].update(
-                f'{values["-FUNC-"]}\n{value}\n{point}\n{stop}\n{stopValue}')
+
+            window['textbox'].update(f'{values["-FUNC-"]}\n{value}\n{point}\n{stopValue}')
+            window['-KS-'].update(f'Kryterium stopu: {stop}')
         except Exception as e:
             print('Exception :')
             print(e)
