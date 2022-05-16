@@ -23,10 +23,12 @@ right_input_column = [
 
 res_left_layout = [
     [sg.Text('Wartość funkcji')],
-    [sg.Text('f(x*,y*) = ')], 
+    #[sg.Text('f(x*,y*) = ')],
+    [sg.Text('', key = '-FV-')],
     [sg.Text('Współrzędne punktu')], 
-    [sg.Text('x* = ')], 
-    [sg.Text('y* = ')],
+    #[sg.Text('x* = ')], 
+    #[sg.Text('y* = ')],
+    [sg.Text('', key = '-PC-')],
 
 
     [sg.Text('Kryterium stopu:', key='-KS-')],

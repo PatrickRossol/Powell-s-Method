@@ -53,6 +53,10 @@ while True:  # Event Loop
 
             window['textbox'].update(f'{values["-FUNC-"]}\n{value}\n{point}\n{stopValue}')
             window['-KS-'].update(f'Kryterium stopu: {stop}')
+
+            #for i in point:
+
+
         except Exception as e:
             print('Exception :')
             print(e)
