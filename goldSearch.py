@@ -48,7 +48,7 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
         #     f'Iteration end: {currentIteration}\n{points}\nDiff: {diff}')
 
         if diff < eps2:
-            return points[dim], func(*points[dim]), 'eps2', f'Value difference: {diff}'
+            return points[dim], func(*points[dim]), 'eps2', diff
         elif all([vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]):
             return points[dim], func(*points[dim]), 'eps1', f'Value {[vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]}'
     return points[dim], func(*points[dim]), 'Max Iteration', f'Iteration count: {currentIteration}'

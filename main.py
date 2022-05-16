@@ -51,11 +51,21 @@ while True:  # Event Loop
                 plt.contourf(X, Y, Z, extend='both', levels=50)
                 figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
 
-            window['textbox'].update(f'{values["-FUNC-"]}\n{value}\n{point}\n{stopValue}')
-            window['-KS-'].update(f'Kryterium stopu: {stop}')
+            index = 0
+            minCoord = ""
+            funcVal = "f("
 
-            #for i in point:
+            for i in point:
+                index = index + 1
+                minCoord = minCoord + 'x' + str(index) + '* = ' + str(point[index-1]) + '\n'
+                funcVal = funcVal + 'x' + str(index) + '*,'
+            funcVal = funcVal[:-1] + ') = ' + str(value)
 
+            window['-PC-'].update(minCoord)
+            window['-FV-'].update(funcVal)
+            window['-KS-'].update(f'{stop}')
+            window['-WKS-'].update(f'{stopValue}')
+            window['textbox'].update(f'{values["-FUNC-"]}')
 
         except Exception as e:
             print('Exception :')
