@@ -15,8 +15,10 @@ allowed = {
     'x1', 'x2', 'x3', 'x4', 'x5',
     'sin',
     'cos',
-    'sqrt',
     'exp',
+    'sqrt',
+    'pi',
+    'abs',
 }
 
 #Formatting a user-entered function into a format readable by matplotlib
