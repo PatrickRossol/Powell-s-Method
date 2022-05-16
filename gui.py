@@ -48,7 +48,7 @@ frame_res = [
 input_data_layout = [
     [sg.Column(frame_1), sg.Column(right_input_column)],
     [sg.Text('Wprowadź funkcję')],
-    [sg.Input(size=(50,1), key='-FUNC-',default_text='(x-2)^2+(x-y^2)^2')],
+    [sg.Input(size=(50,1), key='-FUNC-',default_text='(x1-2)^2+(x1-x2^2)^2')],
     [sg.Text('Punkt początkowy')],
     [sg.Input(size=(50,1), key='-PP-', default_text="-4,-4")],
     [sg.Button('Wyczyść formularz', size = (10,2), button_color= 'gray'), sg.Button('Oblicz', size = (10,2), button_color= 'gray')],

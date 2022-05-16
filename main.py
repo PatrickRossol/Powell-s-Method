@@ -39,20 +39,19 @@ while True:  # Event Loop
             plt.clf()
             point, value, stop, stopValue = minimizePowell(
                 func, startPoint, eps1, eps2, range, limit)
-
-            xmin,xmax = plt.xlim()
-            ymin,ymax = plt.ylim()
-            print(f'{xmin} {xmax} {ymin} {ymax}')
-            x = np.linspace(xmin, xmax)
-            y = np.linspace(ymin, ymax)
-            X, Y = np.meshgrid(x, y)
-            Z = func(X, Y)
-            Z = np.array(Z)
-            Z = np.reshape(Z, (len(x), len(y)))
-            plt.contourf(X, Y, Z, extend='both', levels=50)
-            figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
+            if(len(startPoint) == 2):
+                xmin,xmax = plt.xlim()
+                ymin,ymax = plt.ylim()
+                x = np.linspace(xmin, xmax)
+                y = np.linspace(ymin, ymax)
+                X, Y = np.meshgrid(x, y)
+                Z = func(X, Y)
+                Z = np.array(Z)
+                Z = np.reshape(Z, (len(x), len(y)))
+                plt.contourf(X, Y, Z, extend='both', levels=50)
+                figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
             window['textbox'].update(
-                f'{values["-FUNC-"]}\n{value}\n{point}\n{point[0]}\n{point[1]}\n{stop}\n{stopValue}')
+                f'{values["-FUNC-"]}\n{value}\n{point}\n{stop}\n{stopValue}')
         except Exception as e:
             print('Exception :')
             print(e)
