@@ -2,6 +2,7 @@ from math import sqrt
 from typing import Callable, List
 import matplotlib.pyplot as plt
 import numpy as np
+from gui import window
 
 ALPHA = (sqrt(5)+1)/2   #Golden Ratio
 
@@ -10,6 +11,7 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
                    eps1: float, eps2: float, gssRange: List[float], maxIter: int):
     dim = len(start)
 
+    stepList = []
     dirVectors = np.identity(dim)
     currentIteration = 0
 
@@ -49,15 +51,26 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
                      points[1][1], points[2][1]], 'k-')
             plt.plot(points[1][0], points[1][1], marker='o',
                     markersize=3, markeredgecolor="gray", markerfacecolor="gray" )
+
+        l = points
+        stepList.append(np.copy(startPoint))
+       # for i in range 
+        #stepList.append(np.copy(np.delete(np.delete(points, -1),-1)))
+        stepList.append(np.copy(l[:-1]))
+       # stepList.append(np.copy(points))
+       # print(points)
+       # print(startPoint)
+        #print(stepList)
+
         startPoint = np.copy(points[dim])
         diff = abs(func(*points[dim]) - func(*points[0]))
         # print(
         #     f'Iteration end: {currentIteration}\n{points}\nDiff: {diff}')
 
         if diff < eps2:
-            return points[dim], func(*points[dim]), 'eps2', diff
+            return points[dim], func(*points[dim]), 'eps2', diff, stepList
         elif all([vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]):
-            return points[dim], func(*points[dim]), 'eps1', f'Value {[vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]}'
+            return points[dim], func(*points[dim]), 'eps1', f'Value {[vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]}', stepList
     return points[dim], func(*points[dim]), 'Max Iteration', f'Iteration count: {currentIteration}'
 
 

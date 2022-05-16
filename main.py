@@ -37,8 +37,10 @@ while True:  # Event Loop
             startPoint = [float(x) for x in str(values['-PP-']).split(',')]
             range = [float(x) for x in str(values['-ZONE-']).split(',')]
             plt.clf()
-            point, value, stop, stopValue = minimizePowell(
+
+            point, value, stop, stopValue, stepList = minimizePowell(
                 func, startPoint, eps1, eps2, range, limit)
+
             if(len(startPoint) == 2):
                 xmin,xmax = plt.xlim()
                 ymin,ymax = plt.ylim()
@@ -54,7 +56,6 @@ while True:  # Event Loop
             index = 0
             minCoord = ""
             funcVal = "f("
-
             for i in point:
                 index = index + 1
                 minCoord = minCoord + 'x' + str(index) + '* = ' + str(point[index-1]) + '\n'
@@ -65,7 +66,29 @@ while True:  # Event Loop
             window['-FV-'].update(funcVal)
             window['-KS-'].update(f'{stop}')
             window['-WKS-'].update(f'{stopValue}')
-            window['textbox'].update(f'{values["-FUNC-"]}')
+
+
+            index=0
+            dispStep = "Krok "
+            for list in stepList:
+                print(list)
+
+                if len(list) == 1:
+                    
+
+
+                for point in list:
+                    index = index + 1
+
+                    if point.size == 1:
+                        dispStep = dispStep + str(list) + '\n'
+                    print(point.size)
+                    #print(func(*list))
+                   # print(point)
+
+            
+
+            window['textbox'].update(dispStep)
 
         except Exception as e:
             print('Exception :')
