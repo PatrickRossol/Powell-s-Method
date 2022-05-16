@@ -48,7 +48,7 @@ while True:  # Event Loop
                 Z = func(X, Y)
                 Z = np.array(Z)
                 Z = np.reshape(Z, (len(x), len(y)))
-                plt.contourf(X, Y, Z, extend='both', levels=50)
+                plt.contourf(X, Y, Z, extend='both', linestyles = 'none', levels=50)
                 figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
 
             index = 0

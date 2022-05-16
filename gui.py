@@ -9,7 +9,7 @@ stop_criteria_column = [
     [sg.Text('Eps1:', size=(4,1)), sg.Input(size=(10,1), key='-EPs2-',default_text="0.001")],
     [sg.Text('Eps2:', size=(4,1)), sg.Input(size=(10,1), key='-EPs3-',default_text="0.001")],
     [sg.Text('L:', size=(4,1)), sg.Input(size=(10,1), key='-L-', default_text="1000")],
-    [sg.Text('Przedział [a,b]:', size=(11,1)), sg.Input(size=(10,1), key='-ZONE-',default_text="-1,1")],
+   # [sg.Text('Przedział [a,b]:', size=(11,1)), sg.Input(size=(10,1), key='-ZONE-',default_text="-1,1")],
 ]
 
 s_criteria_frame = [
