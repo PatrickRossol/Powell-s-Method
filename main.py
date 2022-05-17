@@ -6,7 +6,15 @@ from gui import window
 from funcHelper import getFunction
 from goldSearch import minimizePowell
 
+######################  funkcje do testowania #################
+#
+#       1. (x1-2)^2+(x1-x2^2)^2
 
+#       3. (x1+2*x2-7)^2+(2*x1+x2-5)^2   f(1,3)=0  
+#       4. -cos(x1)*cos(x2)*exp(-((x1-pi)^2+(x2-pi)^2))
+#       5. 100*(x2-x1^2)^2+(1-x1)^2+100*(x3-x2^2)^2+(1-x2)^2     f(1,..,1)=0
+# 13a, 21, 20, 14!!
+#Problemy
 def clear_canvas(figure):
     figure.get_tk_widget().forget()
     plt.close('all')
@@ -50,7 +58,8 @@ while True:  # Event Loop
                 Z = func(X, Y)
                 Z = np.array(Z)
                 Z = np.reshape(Z, (len(x), len(y)))
-                plt.contourf(X, Y, Z, extend='both', levels=50)
+                plt.contourf(X, Y, Z, extend='both', levels=20)
+                plt.colorbar()
                 figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
 
             index = 0
@@ -81,9 +90,9 @@ while True:  # Event Loop
             dispStep = ""
             index=0
             for i in pointList:
-                #roundPointL = [round(num, 4) for num in i]
+                roundPointL = [round(num, 4) for num in i]
                # print(roundPointL)
-                dispStep = dispStep + "Krok " + str(index) + ': f(' + str([round(num, 4) for num in i]) + ') = ' + str(round(func(*pointList[index]),4)) + '\n'
+                dispStep = dispStep + "Krok " + str(index) + ': f(' + str(roundPointL) + ') = ' + str(round(func(*pointList[index]),4)) + '\n'
                 #dispStep = dispStep + "Krok " + str(index) + ': f(' + ') = ' + str(func(*i[index])) + '\n'
                # print(i)
                 index = index + 1

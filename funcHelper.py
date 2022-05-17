@@ -8,7 +8,9 @@ replace = {
     'sqrt': 'np.sqrt',
     '^': '**',
     'pi' : 'np.pi',
-    'abs' : 'np.absolute'
+    'abs' : 'np.absolute',
+    'tan' : 'np.tan',
+    'atan' : 'np.arctan'
 }
 
 allowed = {
@@ -19,6 +21,8 @@ allowed = {
     'sqrt',
     'pi',
     'abs',
+    'tan',
+    'atan'
 }
 
 #Formatting a user-entered function into a format readable by matplotlib
