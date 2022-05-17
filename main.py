@@ -6,6 +6,13 @@ from gui import window
 from funcHelper import getFunction
 from goldSearch import minimizePowell
 
+######################  funkcje do testowania #################
+#
+#       1. (x1-2)^2+(x1-x2^2)^2
+#       2. (1.5-x1+x1*x2)^2+(2.25-x1+x1*(x2^2))^2+(2.625-x1+x1*x2^3)^2 ???
+#       3. (x1+2*x2-7)^2+(2*x1+x2-5)^2   f(1,3)=0  
+#       4. -cos(x1)*cos(x2)*exp(-((x1-pi)^2+(x2-pi)^2))
+#       5. 100*(x2-x1^2)^2+(1-x1)^2+100*(x3-x2^2)^2+(1-x2)^2     f(1,..,1)=0
 
 def clear_canvas(figure):
     figure.get_tk_widget().forget()
@@ -50,7 +57,8 @@ while True:  # Event Loop
                 Z = func(X, Y)
                 Z = np.array(Z)
                 Z = np.reshape(Z, (len(x), len(y)))
-                plt.contourf(X, Y, Z, extend='both', levels=50)
+                plt.contourf(X, Y, Z, extend='both', levels=20)
+                plt.colorbar()
                 figure = draw_figure(window['-PLOT_CANV-'].TKCanvas, plt.gcf())
 
             index = 0
