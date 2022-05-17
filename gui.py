@@ -50,7 +50,7 @@ res_left_layout = [
 ]
 
 res_right_layout = [
-    [sg.Multiline(size=(51, 10), key='textbox')]
+    [sg.Multiline(size=(70, 10), key='textbox')]
 ]
 
 res_main_layout = [

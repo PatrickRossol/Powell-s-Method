@@ -58,37 +58,38 @@ while True:  # Event Loop
             funcVal = "f("
             for i in point:
                 index = index + 1
-                minCoord = minCoord + 'x' + str(index) + '* = ' + str(point[index-1]) + '\n'
+                minCoord = minCoord + 'x' + str(index) + '* = ' + str(round(point[index-1],4)) + '\n'
                 funcVal = funcVal + 'x' + str(index) + '*,'
-            funcVal = funcVal[:-1] + ') = ' + str(value)
+            funcVal = funcVal[:-1] + ') = ' + str(round(value,4))
 
             window['-PC-'].update(minCoord)
             window['-FV-'].update(funcVal)
             window['-KS-'].update(f'{stop}')
             window['-WKS-'].update(f'{stopValue}')
-
-
-            index=0
-            dispStep = "Krok "
-            for list in stepList:
-                print(list)
-
-                if len(list) == 1:
-                    
-
-
-                for point in list:
-                    index = index + 1
-
-                    if point.size == 1:
-                        dispStep = dispStep + str(list) + '\n'
-                    print(point.size)
-                    #print(func(*list))
-                   # print(point)
-
             
+            
+            pointList = []
+            index = 1
+            for i in stepList[::2]:
+                pointList.append(i)
+                
+                for j in stepList[index]:
+                    pointList.append(j)
+                index = index + 2
+
+
+            dispStep = ""
+            index=0
+            for i in pointList:
+                roundPointL = [round(num, 4) for num in i]
+                print(roundPointL)
+                dispStep = dispStep + "Krok " + str(index) + ': f(' + str(roundPointL) + ') = ' + str(round(func(*pointList[index]),4)) + '\n'
+                #dispStep = dispStep + "Krok " + str(index) + ': f(' + ') = ' + str(func(*i[index])) + '\n'
+               # print(i)
+                index = index + 1
 
             window['textbox'].update(dispStep)
+
 
         except Exception as e:
             print('Exception :')
