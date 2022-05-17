@@ -7,7 +7,7 @@ replace = {
     'exp': 'np.exp',
     'sqrt': 'np.sqrt',
     '^': '**',
-    'pi' : 'np,pi',
+    'pi' : 'np.pi',
     'abs' : 'np.absolute'
 }
 

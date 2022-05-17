@@ -81,9 +81,9 @@ while True:  # Event Loop
             dispStep = ""
             index=0
             for i in pointList:
-                roundPointL = [round(num, 4) for num in i]
-                print(roundPointL)
-                dispStep = dispStep + "Krok " + str(index) + ': f(' + str(roundPointL) + ') = ' + str(round(func(*pointList[index]),4)) + '\n'
+                #roundPointL = [round(num, 4) for num in i]
+               # print(roundPointL)
+                dispStep = dispStep + "Krok " + str(index) + ': f(' + str([round(num, 4) for num in i]) + ') = ' + str(round(func(*pointList[index]),4)) + '\n'
                 #dispStep = dispStep + "Krok " + str(index) + ': f(' + ') = ' + str(func(*i[index])) + '\n'
                # print(i)
                 index = index + 1
