@@ -19,21 +19,26 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
     startPoint = np.array(start)
     plt.plot(startPoint[0], startPoint[1], marker='o',
     markersize=8, markeredgecolor="red", markerfacecolor="red" )
+    print("tutaj")
+    print(maxIter)
     while(currentIteration < maxIter):
-        currentIteration = currentIteration + 1
+        
         # print(
         #     f'Iteration start: {currentIteration}\n{startPoint}')
         #print(f'start1 {startPoint}')
         points[0] = findMinimumByDir(func, dirVectors[0], startPoint, gssRange)
+        currentIteration = currentIteration + 1
         for i in range(1, dim):
             points[i] = findMinimumByDir(
                 func, dirVectors[i], points[i-1], gssRange)
-
+            currentIteration = currentIteration + 1
         newDir = np.subtract(points[dim-1], startPoint)
         points[dim] = findMinimumByDir(func, newDir, points[dim-1], gssRange)
+        
         #print(f'start2 {startPoint}')
         for i in range(dim-1):
             dirVectors[i] = np.copy(dirVectors[i+1])
+            
         dirVectors[dim-1] = np.copy(newDir)
         if any([any(np.isnan(x)) for x in points]):
             return 'Error', *points
@@ -51,7 +56,7 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
                      points[1][1], points[2][1]], 'k-')
             plt.plot(points[1][0], points[1][1], marker='o',
                     markersize=3, markeredgecolor="gray", markerfacecolor="gray" )
-
+        
         l = points
         stepList.append(np.copy(startPoint))
        # for i in range 
@@ -61,17 +66,19 @@ def minimizePowell(func: Callable[[float, float, float, float, float], float], s
        # print(points)
        # print(startPoint)
         #print(stepList)
-
+        
         startPoint = np.copy(points[dim])
         diff = abs(func(*points[dim]) - func(*points[0]))
         # print(
         #     f'Iteration end: {currentIteration}\n{points}\nDiff: {diff}')
-
+        print("tutaj2")
+        print(currentIteration)
+        currentIteration = currentIteration + 1
         if diff < eps2:
             return points[dim], func(*points[dim]), 'eps2', diff, stepList
         elif all([vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]):
             return points[dim], func(*points[dim]), 'eps1', f'Value {[vectorLength(points[i],points[dim-1]) < eps1 for i in range(0,dim-1)]}', stepList
-    return points[dim], func(*points[dim]), 'Max Iteration', f'Iteration count: {currentIteration}'
+    return points[dim], func(*points[dim]), 'Max Iteration', f'Iteration count: {currentIteration}', stepList
 
 
 def findMinimumByDir(func: Callable[[float, float, float, float, float], float], direction: List[float],
@@ -82,7 +89,7 @@ def findMinimumByDir(func: Callable[[float, float, float, float, float], float],
     p0 = [startPoint[i] + gssrange[0]*normalizedDir[i] for i in range(len(direction))]
     p1 = [startPoint[i] + gssrange[1]*normalizedDir[i] for i in range(len(direction))]
 
-    print(f'Minimize from {p0} to {p1}')
+    #print(f'Minimize from {p0} to {p1}')
     return goldenSection(func, p0, p1)
 
 
