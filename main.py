@@ -52,8 +52,8 @@ while True:  # Event Loop
             if(len(startPoint) == 2):
                 xmin,xmax = plt.xlim()
                 ymin,ymax = plt.ylim()
-                x = np.linspace(xmin - 2, xmax + 2)
-                y = np.linspace(ymin - 2, ymax + 2)
+                x = np.linspace(xmin - 3, xmax + 3)
+                y = np.linspace(ymin - 3, ymax + 3)
                 X, Y = np.meshgrid(x, y)
                 Z = func(X, Y)
                 Z = np.array(Z)
